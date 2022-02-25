@@ -1,0 +1,11 @@
+# AspNetCore_Developer
+
+参考MSDN相关课程对.NETCore框架下四种项目形式进行学习
+
+AspNetCore_Blazor项目演示了如何建立和使用Blazor框架
+
+AspNetCore_MVC 项目演示可如何建立和使用.NETCore框架
+
+AspNetCore_RazorPages 项目演示了如何建立和使用RazorPages框架
+
+AspNetCore_WebAPI 项目演示了如何建立和使用WebAPI框架
