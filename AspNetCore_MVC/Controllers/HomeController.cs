@@ -18,6 +18,7 @@ namespace AspNetCore_MVC.Controllers
             _logger = logger;
         }
 
+/*  index */
         public IActionResult Index()
         {
             return View();
