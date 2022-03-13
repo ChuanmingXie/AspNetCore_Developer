@@ -1,0 +1,78 @@
+﻿@model AspNetCore_MVC.ViewModels.MovieGenreInput
+
+@{
+    ViewData["Title"] = "影片列表";
+}
+
+<h1>影片列表</h1>
+
+<p>
+    <a asp-action="Create">新建</a>
+</p>
+<form method="get" asp-controller="Movie" asp-action="Index">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="input-group">
+                <div class="input-group-btn">影片名称：</div>
+                <div class="input-group-btn">
+                    <input type="text" class="form-control" asp-for="SearchString"/>
+                </div>
+                <div class="input-group-prepend">影片流派：</div>
+                <div class="input-group-prepend">
+                    <select class="form-control" asp-for="MovieGenre" asp-items="Model.Genres"></select>
+                </div>
+                <div class="input-group-append">
+                    <input type="submit" value="搜索" class="btn btn-primary"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Movies) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">编辑</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">详情</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">删除</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
