@@ -10,9 +10,9 @@ namespace AspNetCore_RazorPages.Pages.Movies
 {
     public class EditModel : PageModel
     {
-        private readonly RazorPagesContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public EditModel(RazorPagesContext context)
+        public EditModel(RazorPagesMovieContext context)
         {
             _context = context;
         }

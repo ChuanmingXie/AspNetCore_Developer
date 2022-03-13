@@ -22,7 +22,7 @@ namespace AspNetCore_RazorPages
         {
             services.AddRazorPages();
 
-            services.AddDbContext<RazorPagesContext>(options =>
+            services.AddDbContext<RazorPagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPagesContext")));
         }
 

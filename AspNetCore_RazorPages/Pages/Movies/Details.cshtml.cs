@@ -9,9 +9,9 @@ namespace AspNetCore_RazorPages.Pages.Movies
 {
     public class DetailsModel : PageModel
     {
-        private readonly RazorPagesContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public DetailsModel(RazorPagesContext context)
+        public DetailsModel(RazorPagesMovieContext context)
         {
             _context = context;
         }

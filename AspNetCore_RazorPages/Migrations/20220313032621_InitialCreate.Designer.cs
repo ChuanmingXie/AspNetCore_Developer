@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCore_RazorPages.Migrations
 {
-    [DbContext(typeof(RazorPagesContext))]
+    [DbContext(typeof(RazorPagesMovieContext))]
     [Migration("20220313032621_InitialCreate")]
     partial class InitialCreate
     {

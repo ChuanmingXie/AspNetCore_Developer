@@ -27,7 +27,7 @@ namespace AspNetCore_RazorPages.Models
 
         [Display(Name = "上映时间")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString ="yyyy-MM-dd")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString ="{0:yyyy-MM-dd}")]
         public DateTime ReleaseData { get; set; }
         
         [Required,StringLength(30)]

@@ -9,9 +9,9 @@ namespace AspNetCore_RazorPages.Pages.Movies
 {
     public class DeleteModel : PageModel
     {
-        private readonly RazorPagesContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public DeleteModel(RazorPagesContext context)
+        public DeleteModel(RazorPagesMovieContext context)
         {
             _context = context;
         }

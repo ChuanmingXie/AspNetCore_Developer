@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCore_RazorPages.Data
 {
-    public class RazorPagesContext : DbContext
+    public class RazorPagesMovieContext : DbContext
     {
-        public RazorPagesContext (DbContextOptions<RazorPagesContext> options)
+        public RazorPagesMovieContext (DbContextOptions<RazorPagesMovieContext> options)
             : base(options)
         {
         }

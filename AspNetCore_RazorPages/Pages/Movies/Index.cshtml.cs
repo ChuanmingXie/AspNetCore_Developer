@@ -9,9 +9,9 @@ namespace AspNetCore_RazorPages.Pages.Movies
 {
     public class IndexModel : PageModel
     {
-        private readonly RazorPagesContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public IndexModel(RazorPagesContext context)
+        public IndexModel(RazorPagesMovieContext context)
         {
             _context = context;
         }
