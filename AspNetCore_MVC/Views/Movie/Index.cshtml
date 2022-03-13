@@ -13,13 +13,15 @@
     <div class="row">
         <div class="col-md-10">
             <div class="input-group">
-                <div class="input-group-btn">影片名称：</div>
-                <div class="input-group-btn">
+                <div class="input-group-btn"><h6>影片名称：</h6></div>
+                <div class="input-group-btn col-md-3">
                     <input type="text" class="form-control" asp-for="SearchString"/>
                 </div>
-                <div class="input-group-prepend">影片流派：</div>
-                <div class="input-group-prepend">
-                    <select class="form-control" asp-for="MovieGenre" asp-items="Model.Genres"></select>
+                <div class="input-group-prepend"><h6>影片流派：</h6></div>
+                <div class="input-group-prepend col-md-3">
+                    <select class="form-control" asp-for="MovieGenre" asp-items="Model.Genres">
+                        <option value="">--请选择--</option>
+                    </select>
                 </div>
                 <div class="input-group-append">
                     <input type="submit" value="搜索" class="btn btn-primary"/>
