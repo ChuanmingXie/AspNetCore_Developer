@@ -20,6 +20,20 @@ namespace AspNetCore_RazorPages.Pages.Movies
         [BindProperty]
         public Movie Movie { get; set; }
 
+        //public async Task<IActionResult> OnGetAsyncs(int? id)
+        //{
+        //    if (id==null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    Movie =await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+        //    if (Movie == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Page();
+        //}
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -36,8 +50,8 @@ namespace AspNetCore_RazorPages.Pages.Movies
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+        // 要防止过度伪装攻击，请启用要绑定到的特定属性。
+        // 更多详情，请查阅 https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

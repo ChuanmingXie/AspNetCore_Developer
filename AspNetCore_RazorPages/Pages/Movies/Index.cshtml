@@ -1,15 +1,53 @@
 ﻿@page
+@*@page"{searchString}"   此种写法可以改变路由格式为 http://***.com/searchString*@
 @model AspNetCore_RazorPages.Pages.Movies.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "影片列表";
 }
+<style type="text/css">
+    /*    .input-group-btn h4{
+        font-size:1.0rem;
+    }
+    .input-group-btn{
+        text-align:center;
+        vertical-align:central;
+    }
+    select{
+        width:280px
+    }*/
+</style>
 
-<h1>Index</h1>
+<h1>影片列表</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">新建</a>
 </p>
+<form>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="input-group">
+                <div class="input-group-btn col-md-2">
+                    <h5>影片名称：</h5>
+                </div>
+                <div class="input-group-btn col-md-3">
+                    <input type="text" asp-for="SearchString" class="form-control" />
+                </div>
+                <div class="input-group-btn col-md-2">
+                    <h5>影片流派：</h5>
+                </div>
+                <div class="input-group-btn col-md-3">
+                    <select class="form-control" asp-for="MovieGenre" asp-items="Model.Genres">
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <div class="input-group-btn">
+                    <input type="submit" value="搜索" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -28,33 +66,34 @@
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Rating)
             </th>
-            <th></th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Movie) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseData)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Movie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseData)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">编辑</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">详情</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">删除</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

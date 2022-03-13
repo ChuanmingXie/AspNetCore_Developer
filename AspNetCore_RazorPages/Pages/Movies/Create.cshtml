@@ -2,12 +2,12 @@
 @model AspNetCore_RazorPages.Pages.Movies.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "创建影片";
 }
 
-<h1>Create</h1>
+<h1>创建影片</h1>
 
-<h4>Movie</h4>
+<h4>影片</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,14 +39,14 @@
                 <span asp-validation-for="Movie.Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="创建" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">返回列表</a>
 </div>
 
 @section Scripts {
