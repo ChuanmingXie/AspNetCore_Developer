@@ -1,6 +1,6 @@
 using System;
 
-namespace AspNetCore_WebAPI
+namespace ContosoPizza.Models
 {
     public class WeatherForecast
     {
