@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_MVC", "AspNetCore_MVC\AspNetCore_MVC.csproj", "{01F214DD-CD58-4BE2-98AC-F6BACE9513E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_MVC", "AspNetCore_MVC\AspNetCore_MVC.csproj", "{01F214DD-CD58-4BE2-98AC-F6BACE9513E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_RazorPages", "AspNetCore_RazorPages\AspNetCore_RazorPages.csproj", "{86890D4D-E2ED-4A18-8C40-F82AABCA0257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_RazorPages", "AspNetCore_RazorPages\AspNetCore_RazorPages.csproj", "{86890D4D-E2ED-4A18-8C40-F82AABCA0257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_Blazor", "AspNetCore_Blazor\AspNetCore_Blazor.csproj", "{B274216F-F677-4B4B-B154-4EE8B1CCE24C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_Blazor", "AspNetCore_Blazor\AspNetCore_Blazor.csproj", "{B274216F-F677-4B4B-B154-4EE8B1CCE24C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_WebAPI", "AspNetCore_WebAPI\AspNetCore_WebAPI.csproj", "{3AE3AFC6-CF0E-435A-9313-1659BE45CF2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_WebAPI", "AspNetCore_WebAPI\AspNetCore_WebAPI.csproj", "{3AE3AFC6-CF0E-435A-9313-1659BE45CF2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_MVC_EFCodeFirst", "AspNetCore_MVC_EFCodeFirst\AspNetCore_MVC_EFCodeFirst.csproj", "{42D19C61-DC90-4E6B-BA21-1E93972B41FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_RazorPages_EFCodeFirst", "AspNetCore_RazorPages_EFCodeFirst\AspNetCore_RazorPages_EFCodeFirst.csproj", "{02AC1106-BB11-4D53-94DC-D354446FD16B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{3AE3AFC6-CF0E-435A-9313-1659BE45CF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AE3AFC6-CF0E-435A-9313-1659BE45CF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AE3AFC6-CF0E-435A-9313-1659BE45CF2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D19C61-DC90-4E6B-BA21-1E93972B41FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D19C61-DC90-4E6B-BA21-1E93972B41FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D19C61-DC90-4E6B-BA21-1E93972B41FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D19C61-DC90-4E6B-BA21-1E93972B41FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02AC1106-BB11-4D53-94DC-D354446FD16B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02AC1106-BB11-4D53-94DC-D354446FD16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02AC1106-BB11-4D53-94DC-D354446FD16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02AC1106-BB11-4D53-94DC-D354446FD16B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
