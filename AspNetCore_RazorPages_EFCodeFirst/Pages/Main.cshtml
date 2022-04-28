@@ -1,0 +1,151 @@
+﻿@page
+@model MainModel
+@{
+    ViewData["Title"] = "Main";
+}
+
+<!--<div class="row">
+    <div class="col-3">-->
+<!-- Tab navs -->
+<!--<div class="nav flex-column nav-pills text-center"
+     id="v-pills-tab"
+     role="tablist"
+     aria-orientation="vertical">
+    <a class="nav-link active"
+       id="v-pills-student-tab"
+       data-mdb-toggle="pill"
+       href="#v-pills-student"
+       role="tab"
+       aria-controls="v-pills-student"
+       aria-selected="true">学生管理</a>
+    <a class="nav-link"
+       id="v-pills-course-tab"
+       data-mdb-toggle="pill"
+       href="#v-pills-course"
+       role="tab"
+       aria-controls="v-pills-course"
+       aria-selected="false">课程管理</a>
+    <a class="nav-link"
+       id="v-pills-instructors-tab"
+       data-mdb-toggle="pill"
+       href="#v-pills-instructors"
+       role="tab"
+       aria-controls="v-pills-instructors"
+       aria-selected="false">教师管理</a>
+    <a class="nav-link"
+       id="v-pills-departments-tab"
+       data-mdb-toggle="pill"
+       href="#v-pill-departments"
+       role="tab"
+       aria-controls="v-pills-departments"
+       aria-selected="false">院系管理</a>
+</div>-->
+<!-- Tab navs -->
+<!--</div>
+
+<div class="col-9">-->
+<!-- Tab content -->
+<!--<div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active"
+         id="v-pills-student"
+         role="tabpanel"
+         aria-labelledby="v-pills-student-tab">
+        学生列表操作
+    </div>
+    <div class="tab-pane fade"
+         id="v-pills-course"
+         role="tabpanel"
+         aria-labelledby="v-pills-course-tab">
+        课程列表操作
+    </div>
+    <div class="tab-pane fade"
+         id="v-pills-instructors"
+         role="tabpanel"
+         aria-labelledby="v-pills-instructors-tab">
+        教师列表操作
+    </div>
+    <div class="tab-pane fade"
+         id="v-pills-departments"
+         role="tabpanel"
+         aria-labelledby="v-pills-departments-tab">
+        院系列表操作
+    </div>
+</div>-->
+<!-- Tab content -->
+<!--</div>
+</div>-->
+
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-light" style="width: 280px;">
+    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <i class="fa-3x fab fa-bootstrap"></i>
+        <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">
+                <i class="fa-lg fas fa-mosque"></i>　Home
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link">
+                <i class="fa-lg fas fa-tachometer-alt"></i>　Bashbar
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link">
+                <i class="fa-lg fas fa-table"></i>　Orders
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link">
+                <i class="fa-lg fas fa-hand-holding-usd"></i>　Products
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link">
+                <i class="fa-lg fab fa-product-hunt"></i>　Customers
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="dropdown dropup">
+        <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-mdb-toggle="dropdown" aria-expanded="false">
+            <img src="/img/header.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>CloudWhales</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        (function () {
+            @*'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })*@
+
+
+            //给当前元素设置新的样式，并删除当前元素的同胞元素的样式
+
+            $('.nav-pills').find('a').each(function () {
+                $(this).click(function () {
+                    $(this).addClass('active')
+                    $(this).parent().siblings().children().removeClass("active")
+
+                    // 或者写成一句                
+                    //$(this).parent().addClass('active').siblings().removeClass("active")
+                })
+            })
+
+        })()
+    </script>
+}

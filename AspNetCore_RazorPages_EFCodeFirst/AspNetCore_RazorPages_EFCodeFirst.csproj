@@ -6,8 +6,4 @@
     <Win32Resource />
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
-  </ItemGroup>
-
 </Project>

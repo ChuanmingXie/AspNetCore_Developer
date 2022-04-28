@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_Blazor", "AspNet
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_WebAPI", "AspNetCore_WebAPI\AspNetCore_WebAPI.csproj", "{3AE3AFC6-CF0E-435A-9313-1659BE45CF2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_MVC_EFCodeFirst", "AspNetCore_MVC_EFCodeFirst\AspNetCore_MVC_EFCodeFirst.csproj", "{42D19C61-DC90-4E6B-BA21-1E93972B41FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_MVC_EFCodeFirst", "AspNetCore_MVC_EFCodeFirst\AspNetCore_MVC_EFCodeFirst.csproj", "{42D19C61-DC90-4E6B-BA21-1E93972B41FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_RazorPages_EFCodeFirst", "AspNetCore_RazorPages_EFCodeFirst\AspNetCore_RazorPages_EFCodeFirst.csproj", "{02AC1106-BB11-4D53-94DC-D354446FD16B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_RazorPages_EFCodeFirst", "AspNetCore_RazorPages_EFCodeFirst\AspNetCore_RazorPages_EFCodeFirst.csproj", "{02AC1106-BB11-4D53-94DC-D354446FD16B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
