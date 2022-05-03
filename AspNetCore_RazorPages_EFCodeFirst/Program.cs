@@ -24,7 +24,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
-                    context.Database.EnsureCreated();
+                    //context.Database.EnsureCreated();
                     DbInitializer.Initializer(context);
                 }
                 catch (Exception ex)

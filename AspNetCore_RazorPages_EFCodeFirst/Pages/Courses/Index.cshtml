@@ -1,0 +1,39 @@
+﻿@page
+@model AspNetCore_RazorPages_EFCodeFirst.Pages.Courses.IndexModel
+
+@{
+    ViewData["Title"] = "课程";
+}
+
+<h1>课程</h1>
+
+<p>
+    <a asp-page="Create">新建</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Courses[0].CourseID)</th>
+            <th>@Html.DisplayNameFor(model => model.Courses[0].Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Courses[0].Credits)</th>
+            <th>@Html.DisplayNameFor(model => model.Courses[0].Department)</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CourseID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Credits)</td>
+                <td>@Html.DisplayFor(modelItem => item.Department.DepartmentID)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CourseID">编辑</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CourseID">详情</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CourseID">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
