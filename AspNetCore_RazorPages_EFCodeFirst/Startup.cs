@@ -1,13 +1,12 @@
+﻿using AspNetCore_RazorPages_EFCodeFirst.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCore_RazorPages_EFCodeFirst
 {
@@ -23,7 +22,15 @@ namespace AspNetCore_RazorPages_EFCodeFirst
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var myMaxModelBindingCollectionSize = Convert.ToInt32(Configuration["MyMaxModelBindingCollectionSize"] ?? "100");
+            services.Configure<MvcOptions>(options => options.MaxModelBindingCollectionSize = myMaxModelBindingCollectionSize);
+
             services.AddRazorPages();
+
+            services.AddDbContext<SchoolContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +39,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {

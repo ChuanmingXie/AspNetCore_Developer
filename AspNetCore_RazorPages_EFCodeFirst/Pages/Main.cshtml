@@ -81,29 +81,29 @@
         <span class="fs-4">Sidebar</span>
     </a>
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+            <a asp-area="" asp-page="/Students/Index" class="nav-link active" aria-current="page">
                 <i class="fa-lg fas fa-mosque"></i>　Home
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link">
+            <a asp-area="" asp-page="/Courses/Index"  class="nav-link">
                 <i class="fa-lg fas fa-tachometer-alt"></i>　Bashbar
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link">
+            <a asp-area="" asp-page="/Instructors/Index" class="nav-link">
                 <i class="fa-lg fas fa-table"></i>　Orders
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link">
+            <a asp-area="" asp-page="/Departments/Index"  class="nav-link">
                 <i class="fa-lg fas fa-hand-holding-usd"></i>　Products
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link">
+            <a asp-area="" asp-page="/About"  class="nav-link">
                 <i class="fa-lg fab fa-product-hunt"></i>　Customers
             </a>
         </li>
@@ -136,7 +136,7 @@
 
             //给当前元素设置新的样式，并删除当前元素的同胞元素的样式
 
-            $('.nav-pills').find('a').each(function () {
+            $('.nav').find('a').each(function () {
                 $(this).click(function () {
                     $(this).addClass('active')
                     $(this).parent().siblings().children().removeClass("active")

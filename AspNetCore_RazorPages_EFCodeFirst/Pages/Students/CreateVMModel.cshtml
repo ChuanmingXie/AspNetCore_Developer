@@ -1,0 +1,45 @@
+﻿@page
+@model AspNetCore_RazorPages_EFCodeFirst.Pages.Students.CreateVMModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>创建</h1>
+
+<h4>学生</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentInput.LastName" class="control-label"></label>
+                <input asp-for="StudentInput.LastName" class="form-control" />
+                <span asp-validation-for="StudentInput.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentInput.FirstMidName" class="control-label"></label>
+                <input asp-for="StudentInput.FirstMidName" class="form-control" />
+                <span asp-validation-for="StudentInput.FirstMidName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentInput.EnrollmentDate" class="control-label"></label>
+                <input asp-for="StudentInput.EnrollmentDate" class="form-control" />
+                <span asp-validation-for="StudentInput.EnrollmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">返回</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

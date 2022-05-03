@@ -9,5 +9,19 @@ $(function () {
             $(this).parent().siblings().children().removeClass('active');
             //e.preventDefault();
         })
+    });
+    //$("#modalval").click(function (e) {
+    //    e.preventDefault();
+    //    $("#dynamicModal").load("dist/modal.html");
+    //});
+
+    $('.nav-pills').find('a').each(function () {
+        $(this).click(function () {
+            $(this).addClass('active')
+            $(this).parent().siblings().children().removeClass("active")
+
+            // 或者写成一句                
+            //$(this).parent().addClass('active').siblings().removeClass("active")
+        })
     })
 });
