@@ -7,20 +7,28 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AspNetCore_RazorPages_EFCodeFirst.Data;
 using AspNetCore_RazorPages_EFCodeFirst.Models;
+using AspNetCore_RazorPages_EFCodeFirst.ViewModel;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Instructors
 {
-    public class CreateModel : PageModel
+    public class CreateModel : InstructorCoursePageModel
     {
-        private readonly AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
+        private readonly ILogger<InstructorCoursePageModel> _logger;
 
-        public CreateModel(AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext context)
+        public CreateModel(SchoolContext context,ILogger<InstructorCoursePageModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult OnGet()
         {
+            var instructor = new Instructor();
+            instructor.Courses = new List<Course>();
+            AssignedCourseDataCheckBox(_context, instructor);
             return Page();
         }
 
@@ -28,17 +36,52 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Instructors
         public Instructor Instructor { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
-            if (!ModelState.IsValid)
+            var newInstructor = new Instructor();
+
+            if (selectedCourses.Length > 0)
             {
-                return Page();
+                newInstructor.Courses = new List<Course>();
+                // Load collection with one DB call.
+                _context.Courses.Load();
             }
 
-            _context.Instructors.Add(Instructor);
-            await _context.SaveChangesAsync();
+            // Add selected Courses courses to the new instructor.
+            foreach (var course in selectedCourses)
+            {
+                var foundCourse = await _context.Courses.FindAsync(int.Parse(course));
+                if (foundCourse != null)
+                {
+                    newInstructor.Courses.Add(foundCourse);
+                }
+                else
+                {
+                    _logger.LogWarning("Course {course} not found", course);
+                }
+            }
 
-            return RedirectToPage("./Index");
+            try
+            {
+                if (await TryUpdateModelAsync<Instructor>(
+                                newInstructor,
+                                "Instructor",
+                                i => i.FirstMidName, i => i.LastName,
+                                i => i.HireDate, i => i.OfficeAssignment))
+                {
+                    _context.Instructors.Add(newInstructor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToPage("./Index");
+                }
+                return RedirectToPage("./Index");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+
+            AssignedCourseDataCheckBox(_context, newInstructor);
+            return Page();
         }
     }
 }

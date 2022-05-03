@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCore_RazorPages_EFCodeFirst.Data;
+using AspNetCore_RazorPages_EFCodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AspNetCore_RazorPages_EFCodeFirst.Data;
-using AspNetCore_RazorPages_EFCodeFirst.Models;
+using System.Threading.Tasks;
 
 namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Courses
 {
     public class DeleteModel : PageModel
     {
-        private readonly AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
 
-        public DeleteModel(AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext context)
+        public DeleteModel(SchoolContext context)
         {
             _context = context;
         }

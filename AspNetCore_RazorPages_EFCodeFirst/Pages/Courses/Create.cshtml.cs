@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using AspNetCore_RazorPages_EFCodeFirst.Data;
+﻿using AspNetCore_RazorPages_EFCodeFirst.Data;
 using AspNetCore_RazorPages_EFCodeFirst.Models;
 using AspNetCore_RazorPages_EFCodeFirst.ViewModel;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Courses
 {
@@ -33,15 +28,16 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Courses
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            var emptyCourse = new Course();
+            if(await TryUpdateModelAsync<Course>(emptyCourse,"course",s=>s.CourseID,s=>s.DepartmentID,s=>s.Title,s=>s.Credits))
             {
-                return Page();
+                _context.Courses.Add(Course);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
+            DepartmentNameDropDownList(_context, emptyCourse.DepartmentID);
+            return Page();
 
-            _context.Courses.Add(Course);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
         }
     }
 }

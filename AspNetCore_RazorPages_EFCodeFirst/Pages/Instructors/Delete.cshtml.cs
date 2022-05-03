@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCore_RazorPages_EFCodeFirst.Data;
+using AspNetCore_RazorPages_EFCodeFirst.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AspNetCore_RazorPages_EFCodeFirst.Data;
-using AspNetCore_RazorPages_EFCodeFirst.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Instructors
 {
     public class DeleteModel : PageModel
     {
-        private readonly AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
 
-        public DeleteModel(AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext context)
+        public DeleteModel(SchoolContext context)
         {
             _context = context;
         }
@@ -45,15 +44,24 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Instructors
                 return NotFound();
             }
 
-            Instructor = await _context.Instructors.FindAsync(id);
+            Instructor = await _context.Instructors
+                .Include(i => i.Courses)
+                .SingleAsync(i => i.ID == id);
 
-            if (Instructor != null)
+            if (Instructor == null)
             {
-                _context.Instructors.Remove(Instructor);
-                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
+            var departments = await _context.Departments.Where(d => d.InstuctorID == id).ToListAsync();
+            departments.ForEach(d => d.InstuctorID = null);
+            _context.Instructors.Remove(Instructor);
+            await _context.SaveChangesAsync();
+            return RediectToPage("./Index");
+        }
 
-            return RedirectToPage("./Index");
+        private IActionResult RediectToPage(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

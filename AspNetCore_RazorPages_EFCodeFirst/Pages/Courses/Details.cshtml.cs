@@ -12,9 +12,9 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Courses
 {
     public class DetailsModel : PageModel
     {
-        private readonly AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
 
-        public DetailsModel(AspNetCore_RazorPages_EFCodeFirst.Data.SchoolContext context)
+        public DetailsModel(SchoolContext context)
         {
             _context = context;
         }
@@ -28,7 +28,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Courses
                 return NotFound();
             }
 
-            Course = await _context.Courses
+            Course = await _context.Courses.AsNoTracking()
                 .Include(c => c.Department).FirstOrDefaultAsync(m => m.CourseID == id);
 
             if (Course == null)

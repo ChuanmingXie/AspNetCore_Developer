@@ -24,7 +24,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Models
         public int InstructorID { get; set; }
 
         [StringLength(50)]
-        [Display(Name ="Office Location")]
+        [Display(Name ="办公室")]
         public string Location { get; set; }
 
         public Instructor Instructor { get; set; }
