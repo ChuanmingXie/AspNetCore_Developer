@@ -19,25 +19,34 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Models
 {
     public class Department
     {
+        [Display(Name="院系代码")]
         public int DepartmentID { get; set; }
 
         [StringLength(50,MinimumLength =3)]
+        [Display(Name="院系名称")]
         public string Name { get; set; }
 
         [DataType(DataType.Currency)]
         [Column(TypeName ="money")]
+        [Display(Name="院系预算")]
         public decimal Budget { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0;yyyy-MM-dd}",ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         [Display(Name="成立时间")]
         public DateTime StartDate { get; set; }
 
+        [Display(Name="系主任工号")]
         public int? InstuctorID { get; set; }
+
+        [Timestamp]
+        [Display(Name="数据标记")]
+        public byte[] ConcurrencyToken { get; set; }
 
         /// <summary>
         /// 一个院系一个系主任
         /// </summary>
+        [Display(Name="系主任")]
         public Instructor Administrator { get; set; }
 
         /// <summary>

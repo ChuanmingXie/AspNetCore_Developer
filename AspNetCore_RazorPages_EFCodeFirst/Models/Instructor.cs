@@ -21,6 +21,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Models
 {
     public class Instructor
     {
+        [Display(Name ="讲师工号")]
         public int ID { get; set; }
 
         [Required]

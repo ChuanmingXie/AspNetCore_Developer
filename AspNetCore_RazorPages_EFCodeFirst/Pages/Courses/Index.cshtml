@@ -27,7 +27,7 @@
                 <td>@Html.DisplayFor(modelItem => item.CourseID)</td>
                 <td>@Html.DisplayFor(modelItem => item.Title)</td>
                 <td>@Html.DisplayFor(modelItem => item.Credits)</td>
-                <td>@Html.DisplayFor(modelItem => item.Department.DepartmentID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Department.Name)</td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.CourseID">编辑</a> |
                     <a asp-page="./Details" asp-route-id="@item.CourseID">详情</a> |

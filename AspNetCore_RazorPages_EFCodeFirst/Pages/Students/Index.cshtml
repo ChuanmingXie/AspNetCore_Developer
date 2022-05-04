@@ -41,25 +41,19 @@
                     @Html.DisplayNameFor(model => model.Students[0].EnrollmentDate)
                 </a>
             </th>
-            <th></th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Students)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstMidName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NativePlace)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
-                </td>
+                <td> @Html.DisplayFor(modelItem => item.LastName) </td>
+                <td> @Html.DisplayFor(modelItem => item.FirstMidName) </td>
+
+                <td> @Html.DisplayFor(modelItem => item.NativePlace) </td>
+                <td> @Html.DisplayFor(modelItem => item.EnrollmentDate)</td>
+                
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.ID">编辑</a> |
                     <a asp-page="./Details" asp-route-id="@item.ID">详情</a> |
@@ -74,6 +68,7 @@
     var prevDisabled = !Model.Students.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.Students.HasNextPage ? "disabled" : "";
 }
+
 <a asp-page="./Index" class="btn btn-primary @prevDisabled"
    asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.Students.PageIndex-1)"

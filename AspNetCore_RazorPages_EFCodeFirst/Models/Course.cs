@@ -19,7 +19,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Models
     public class Course
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name ="课程编号")]
+        [Display(Name ="课程代码")]
         public int CourseID { get; set; }
 
         [StringLength(50,MinimumLength =3)]

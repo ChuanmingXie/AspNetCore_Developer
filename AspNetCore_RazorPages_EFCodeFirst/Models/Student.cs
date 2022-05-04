@@ -21,6 +21,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Models
 {
     public class Student
     {
+        [Display(Name ="学生证号")]
         public int ID { get; set; }
 
         [Required]
