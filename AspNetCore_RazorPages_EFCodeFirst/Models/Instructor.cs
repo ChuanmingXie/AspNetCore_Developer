@@ -43,7 +43,7 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Models
         [Display(Name ="全名")]
         public string FullName
         {
-            get { return LastName + "," + FirstMidName; }
+            get { return LastName + "·" + FirstMidName; }
         }
 
         public ICollection<Course> Courses { get; set; }

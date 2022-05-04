@@ -28,7 +28,9 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Departments
                 return NotFound();
             }
 
-            Department = await _context.Departments.FirstOrDefaultAsync(m => m.DepartmentID == id);
+            Department = await _context.Departments
+                .Include(x=>x.Administrator)
+                .FirstOrDefaultAsync(m => m.DepartmentID == id);
 
             if (Department == null)
             {

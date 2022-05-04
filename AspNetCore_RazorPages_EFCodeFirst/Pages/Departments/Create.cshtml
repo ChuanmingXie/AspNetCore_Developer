@@ -43,7 +43,8 @@
             <div class="row align-items-center">
                 <label asp-for="Department.InstuctorID" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-6">
-                    <input asp-for="Department.InstuctorID" class="form-control" />
+                    @*<input asp-for="Department.InstuctorID" class="form-control" />*@
+                    <select asp-for="Department.InstuctorID" class="form-control" asp-items="@Model.InstructorNameSL"></select>
                 </div>
                 <div class="col-sm-4">
                     <span asp-validation-for="Department.InstuctorID" class="form-text text-danger"></span>

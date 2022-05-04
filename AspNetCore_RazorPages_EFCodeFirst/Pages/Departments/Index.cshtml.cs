@@ -20,7 +20,10 @@ namespace AspNetCore_RazorPages_EFCodeFirst.Pages.Departments
 
         public async Task OnGetAsync()
         {
-            Department = await _context.Departments.ToListAsync();
+            Department = await _context.Departments
+                .Include(x=>x.Administrator)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }
