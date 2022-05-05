@@ -3,46 +3,243 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AspNetCore_MVC_EFCodeFirst</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - 校务管理</title>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/img/icon.png" />
+
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/lib/fontawesome-free/dist/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/mdb-ui-kit/dist/css/mdb.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .nav-link.active {
+            color: #fff;
+            background-color: #0d6efd;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg  navbar-light bg-info">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AspNetCore_MVC_EFCodeFirst</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="nav-link" data-mdb-toggle="offcanvas" href="#offcanvasExample" role="button"
+                   aria-controls="offcanvasExample">
+                    <i class="fas fa-bars"></i>
+                </a>
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AspNetCore_MVC_EFCodeFirst</a>*@
+                <a class="navbar-brand" href="#"><img src="~/img/cloudwhales.png" width="120" alt="CloudBlog" /></a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">校务</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">知识</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">设置</a>
                         </li>
                     </ul>
+                    <form class="d-flex input-group w-auto">
+                        <input type="search" class="form-control" placeholder="关键字" aria-label="Search"/>
+                        <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark">查询</button>
+                    </form>
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - AspNetCore_MVC_EFCodeFirst - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <!-- Collapsible offcanvas -->
+        <div class="offcanvas offcanvas-start d-flex flex-column flex-shrink-0 bg-light" tabindex="-1"
+             id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 5.4rem;">
+            <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only"
+               data-mdb-toggle="tooltip" data-mdb-placement="right">
+                <i class="fa-3x fab fa-bootstrap"></i>
+            </a>
+            <ul class="nav nav-flush flex-column mb-auto text-center">
+                <li class="nav-item">
+                    <a asp-area="" asp-route="/Students/Index" class="nav-link active py-3 border-bottom"
+                       aria-current="page" title="Home" data-mdb-toggle="tooltip" data-mdb-placement="right">
+                        <i class="fa-lg fas fa-mosque" aria-label="Home"></i>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/Courses/Index" class="nav-link py-3 border-bottom"
+                       aria-current="page" title="Course" data-mdb-toggle="tooltip" data-mdb-placement="right">
+                        <i class="fa-lg fas fa-tachometer-alt" aria-label="Course"></i>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/Instructors/Index" class="nav-link py-3 border-bottom"
+                       aria-current="page" title="Instructor" data-mdb-toggle="tooltip" data-mdb-placement="right">
+                        <i class="fa-lg fas fa-table" aria-label="Instructor"></i>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/Departments/Index" class="nav-link py-3 border-bottom"
+                       aria-current="page" title="Department" data-mdb-toggle="tooltip" data-mdb-placement="right">
+                        <i class="fa-lg fas fa-hand-holding-usd" aria-label="Department"></i>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/About" class="nav-link py-3 border-bottom"
+                       aria-current="page" title="About" data-mdb-toggle="tooltip" data-mdb-placement="right">
+                        <i class="fa-lg fab fa-product-hunt" aria-label="About"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="dropdown dropup">
+                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+                   id="dropdownUser" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <img src="~/img/header.png" alt="cloudwhales" width="24" height="24" class="rounded-circle" />
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+                    <li><a class="dropdown-item" href="#">系统</a></li>
+                    <li><a class="dropdown-item" href="#">设置</a></li>
+                    <li><a class="dropdown-item" href="#">主页</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li><a class="dropdown-item">登出</a></li>
+                </ul>
+            </div>
         </div>
+        <!-- Collapsible offcanvas -->
+    </header>
+
+    <main>
+        <div class="container my-5">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="bg-info footer text-center" style="--mdb-bg-opacity:0.9;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+                <!-- Twitter -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+                <!-- Google -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!" role="button"><i class="fab fa-google"></i></a>
+                <!-- Instagram -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+                <!-- Linkedin -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+                <!-- Github -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!" role="button"><i class="fab fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+            <!-- Section: Form -->
+            <section class="">
+                <form action="">
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center">
+                        <!--Grid column-->
+                        <div class="col-auto">
+                            <p class="pt-2">
+                                <strong>登录评论中心</strong>
+                            </p>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-md-5 col-12">
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="userEmail" class="form-control" />
+                                <label class="form-label" for="userEmail">用户邮箱</label>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-auto">
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary mb-4">马上登录</button>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </form>
+            </section>
+            <!-- Section: Form -->
+            <!-- Section: Text -->
+            <section class="mb-4">
+                <p> 网战已经运行了-2372-天 </p>
+            </section>
+            <!-- Section: Text -->
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">云主机</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#!" class="text-dark">阿里云</a></li>
+                            <li><a href="#!" class="text-dark">华为云</a></li>
+                            <li><a href="#!" class="text-dark">腾讯云</a></li>
+                            <li><a href="#!" class="text-dark">百度云</a></li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">技术流</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#!" class="text-dark">人工智能</a></li>
+                            <li><a href="#!" class="text-dark">云计算</a></li>
+                            <li><a href="#!" class="text-dark">大数据</a></li>
+                            <li><a href="#!" class="text-dark">量子通信</a></li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">核心流</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#!" class="text-dark">操作系统</a></li>
+                            <li><a href="#!" class="text-dark">体系结构</a></li>
+                            <li><a href="#!" class="text-dark">网络攻防</a></li>
+                            <li> <a href="#!" class="text-dark">数据结构</a></li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">技能栈</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#!" class="text-dark">Bootstrap</a></li>
+                            <li><a href="#!" class="text-dark">Vue-CLI</a></li>
+                            <li><a href="#!" class="text-dark">React</a></li>
+                            <li><a href="#!" class="text-dark">Angular</a></li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color:rgba(0,0,0,0.2)">
+            &copy; 2022 - 校务管理 - <a asp-area="" asp-controller="Home" asp-action="Privacy">协议</a>
+        </div>
+        <!-- Copyright -->
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/mdb-ui-kit/dist/js/mdb.min.js"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

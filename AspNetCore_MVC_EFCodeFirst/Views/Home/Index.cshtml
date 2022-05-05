@@ -1,8 +1,115 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="row mb-4 gx-5">
+    <div class="col-md-5">
+        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-mdb-ripple-color="light">
+            <img src="~/img/113.webp" class="w-100" 　alt="Louvre">
+            <a href="#!">
+                <div class="mask" style="background-color:rgba(251,251,251,0.2)"></div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <h1>卢浮宫前</h1>
+        <p class="text-muted">
+            对于法兰西这个“高卢雄鸡”民族的认识，是从拿破仑·波拿巴（法语：Napoléon Bonaparte，意大利语：Napoleone Buonaparte，
+            1769年8月15日－1821年5月5日，即拿破仑一世Napoléon I）这位伟人开始的，记得这位出生在科西嘉岛的矮个子是一个左撇子
+            （小时候的巅巅兔崽与他一样），当时谁都不会想到就是这样的一个小人物发动了著名的“雾月政变”，
+        </p>
+        <hr>
+        <p class="text-muted">
+            颁布了直到两个世纪之后依然还有深远影响的《拿破仑法典》，他所带领的法国军队前期所向披靡，横扫欧洲，
+            五破反法联盟……但命运总是跌宕起伏，英雄总是孤寂落寞，滑铁卢一战失利的导火索，使得拿破仑·波拿巴黯然淡出了历史舞台。
+            诚如法国著名文学家雨果  所评价的那样：失败反把失败者变得更崇高了，倒了的波拿巴仿佛比立着的拿破仑还要更高大一些！
+        </p>
+        <button type="button" class="btn btn-primary me-3">阅读全文 <i class="fas fa-book-reader"></i></button>
+        <button type="button" class="btn btn-outline-primary" data-mdb-ripple-color="dark">收　　藏</button>
+    </div>
 </div>
+
+<div class="row my-3">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="~/img/110.webp" class="img-fluid" />
+                <a href="#!">
+                    <div class="mark" style="background-color:rgba(251,251,251,0.15);"></div>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">丛林</h5>
+                <p class="card-text">
+                    晨曦里的一丝余晖将天际的暗淡染成青红色，
+                    日光渐渐散发出耀阳的光芒被从零掩映的光彩照人
+                </p>
+                <a class="btn btn-primary">赞!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="~/img/112.webp" class="img-fluid" />
+                <a href="#!">
+                    <div class="mark" style="background-color:rgba(251,251,251,0.15);"></div>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">花海</h5>
+                <p class="card-text">
+                    晨曦里的一丝余晖将天际的暗淡染成青红色，
+                    日光渐渐散发出耀阳的光芒被从零掩映的光彩照人
+                </p>
+                <a class="btn btn-primary">赞!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="~/img/111.webp" class="img-fluid" />
+                <a href="#!">
+                    <div class="mark" style="background-color:rgba(251,251,251,0.15);"></div>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">霞光</h5>
+                <p class="card-text">
+                    晨曦里的一丝余晖将天际的暗淡染成青红色，
+                    日光渐渐散发出耀阳的光芒被从零掩映的光彩照人
+                </p>
+                <a href="#!" class="btn btn-primary">赞!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="mt-4 p-5 bg-primary text-white rounded">
+        <h1>欢迎</h1>
+        <p>掌握MVC-mdb5</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>欢迎使用教务管理</h2>
+            <p>
+                教务管理系统实际一个简单的应用，用于演示如何在.NET Core MVC框架中使用.EFCore
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>从应用分支中构建项目</h2>
+            <p>
+                教务管理系统实际一个简单的应用，用于演示如何在.NET Core MVC框架中使用.EFCore
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>下载模板</h2>
+            <p>
+                <a class="btn btn-outline-primary" href="https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/5cu-final">查看源代码 &raquo;</a>
+            </p>
+        </div>
+    </div>*@
