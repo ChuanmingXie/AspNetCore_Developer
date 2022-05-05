@@ -38,7 +38,7 @@
                             <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">校务</a>
+                            <a class="nav-link" asp-area="" asp-controller="Students" asp-action="Index">校务</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">知识</a>
@@ -63,31 +63,31 @@
             </a>
             <ul class="nav nav-flush flex-column mb-auto text-center">
                 <li class="nav-item">
-                    <a asp-area="" asp-route="/Students/Index" class="nav-link active py-3 border-bottom"
+                    <a asp-area="" asp-controller="Students" asp-action="Index" class="nav-link active py-3 border-bottom"
                        aria-current="page" title="Home" data-mdb-toggle="tooltip" data-mdb-placement="right">
                         <i class="fa-lg fas fa-mosque" aria-label="Home"></i>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/Courses/Index" class="nav-link py-3 border-bottom"
+                    <a asp-area="" asp-controller="Courses" asp-action="Index" class="nav-link py-3 border-bottom"
                        aria-current="page" title="Course" data-mdb-toggle="tooltip" data-mdb-placement="right">
                         <i class="fa-lg fas fa-tachometer-alt" aria-label="Course"></i>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/Instructors/Index" class="nav-link py-3 border-bottom"
+                    <a asp-area="" asp-controller="Instructors" asp-action="Index" class="nav-link py-3 border-bottom"
                        aria-current="page" title="Instructor" data-mdb-toggle="tooltip" data-mdb-placement="right">
                         <i class="fa-lg fas fa-table" aria-label="Instructor"></i>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/Departments/Index" class="nav-link py-3 border-bottom"
+                    <a asp-area="" asp-controller="Departments" asp-action="Index" class="nav-link py-3 border-bottom"
                        aria-current="page" title="Department" data-mdb-toggle="tooltip" data-mdb-placement="right">
                         <i class="fa-lg fas fa-hand-holding-usd" aria-label="Department"></i>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/About" class="nav-link py-3 border-bottom"
+                    <a asp-area="" asp-controller="/About" class="nav-link py-3 border-bottom"
                        aria-current="page" title="About" data-mdb-toggle="tooltip" data-mdb-placement="right">
                         <i class="fa-lg fab fa-product-hunt" aria-label="About"></i>
                     </a>

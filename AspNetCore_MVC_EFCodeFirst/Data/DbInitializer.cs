@@ -8,7 +8,7 @@ namespace AspNetCore_MVC_EFCodeFirst.Data
     {
         public static void Initialize(SchoolContext context)
         {
-            //context.Database.EnsureCreated();
+            context.Database.EnsureCreated();
 
             // Look for any students.
             if (context.Students.Any())
