@@ -1,47 +1,102 @@
-﻿@model IEnumerable<AspNetCore_MVC_EFCodeFirst.Models.Course>
+﻿@using AspNetCore_MVC_EFCodeFirst.Models
+@using AspNetCore_MVC_EFCodeFirst.ViewModel
+@model PaginatedList<Course>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "课程";
 }
 
-<h1>Index</h1>
+<h1>课程</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">新建</a>
 </p>
-<table class="table">
+
+<form asp-action="Index" method="get" class="d-flex input-group w-auto">
+    <div class="col-12 col-lg-6">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="关键字" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <button class="btn btn-outline-primary" type="submit" value="Search">查询</button>
+            <a class="mx-3 m-auto" asp-action="Index">返回列表</a>
+        </div>
+    </div>
+</form>
+<table class="table table-hover">
     <thead>
         <tr>
+            <th>@Html.DisplayNameFor(modeel => modeel.FirstOrDefault().CourseID)</th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["TitleSortParam"]"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-pageNumber="@Model.PageIndex">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
+                </a>
             </th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Credits)</th>
             <th>
-                @Html.DisplayNameFor(model => model.Credits)
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["DepartmentSort"]"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-pageNumber="@Model.PageIndex">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Department)
+                </a>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th></th>
+            <th class="text-center">操作</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Credits)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department.DepartmentID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
+            <td>@Html.DisplayFor(modelItem => item.CourseID)</td>
+            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+            <td>@Html.DisplayFor(modelItem => item.Credits)</td>
+            <td>@Html.DisplayFor(modelItem => item.Department.Name)</td>
+            <td class="text-center">
+                <a asp-action="Edit" asp-route-id="@item.CourseID"><i class="fas fa-edit"></i></a>
+                <a asp-action="Details" asp-route-id="@item.CourseID"><i class="fas fa-info-circle"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.CourseID"><i class="fas fa-trash-alt"></i></a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<nav aria-label="page navigation">
+    <ul class="pagination pagination-circle justify-content-center">
+        <li class="page-item @prevDisabled">
+            <a asp-action="Index"
+               asp-route-sortOrder="“@ViewData["CurrentSort"]"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               asp-route-pageNumber="@(Model.PageIndex-1)"
+               class="page-link">
+                上一页
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i==1?"active":"")">
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-pageNumber="@(i)"
+                   class="page-link">@i</a>
+            </li>
+        }
+        <li class="page-item @nextDisabled">
+            <a asp-action="Index"
+               asp-route-sortOrder="“@ViewData["CurrentSort"]"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               asp-route-pageNumber="@(Model.PageIndex+1)"
+               class="page-link">
+                下一页
+            </a>
+        </li>
+    </ul>
+</nav>

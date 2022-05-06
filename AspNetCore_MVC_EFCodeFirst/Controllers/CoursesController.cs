@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCore_MVC_EFCodeFirst.Data;
+using AspNetCore_MVC_EFCodeFirst.Models;
+using AspNetCore_MVC_EFCodeFirst.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AspNetCore_MVC_EFCodeFirst.Data;
-using AspNetCore_MVC_EFCodeFirst.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AspNetCore_MVC_EFCodeFirst.Controllers
 {
@@ -20,10 +19,32 @@ namespace AspNetCore_MVC_EFCodeFirst.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,string searchString,string currentFilter,int? pageNumber)
         {
-            var schoolContext = _context.Courses.Include(c => c.Department);
-            return View(await schoolContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["TitleSortParam"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewData["DepartmentSort"] = sortOrder == "department" ? "department_desc":"department";
+
+            if (searchString != null)
+                pageNumber = 1;
+            else
+                searchString = currentFilter;
+            ViewData["CurrentFilter"] = searchString;
+
+            /*var schoolContext = _context.Courses.Include(c => c.Department);*/
+            var courses = from c in _context.Courses.Include(c=>c.Department) select c;
+            if (!string.IsNullOrEmpty(searchString))
+                courses = courses.Where(x => x.Title.Contains(searchString) || x.Department.Name.Contains(searchString));
+            courses = sortOrder switch
+            {
+                "title_desc" => courses.OrderByDescending(c => c.Title),
+                "department_desc" => courses.OrderByDescending(c => c.Department.Name),
+                "department" => courses.OrderBy(c => c.Department.Name),
+                _ => courses.OrderBy(c => c.Title),
+            };
+            int pageSize = 3;
+            //return View(await courses.AsNoTracking().ToListAsync());
+            return View(await PaginatedList<Course>.CreateAsync(courses.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Courses/Details/5

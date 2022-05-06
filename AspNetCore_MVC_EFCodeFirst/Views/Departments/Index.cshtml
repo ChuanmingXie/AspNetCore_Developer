@@ -1,53 +1,106 @@
-﻿@model IEnumerable<AspNetCore_MVC_EFCodeFirst.Models.Department>
+﻿@using AspNetCore_MVC_EFCodeFirst.Models;
+@using AspNetCore_MVC_EFCodeFirst.ViewModel 
+@model PaginatedList<Department>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "院系";
 }
 
-<h1>Index</h1>
+<h1>院系</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">新建</a>
 </p>
-<table class="table">
+<form class="d-flex input-group w-auto" asp-action="Index" method="get">
+    <div class="col-12 col-lg-6">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="关键字" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <button class="btn btn-outline-primary" type="submit" value="Search">查询</button>
+            <a class="mx-3 m-auto" asp-action="Index">返回列表</a>
+        </div>
+    </div>
+</form>
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["NameSortParam"]"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-pageNumber="@Model.PageIndex">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Budget)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Budget)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["DateSortParam"]"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-pageNumber="@Model.PageIndex">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().StartDate)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Administrator)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Administrator)
             </th>
-            <th></th>
+            <th class="text-center">操作</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Budget)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Administrator.FirstMidName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DepartmentID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DepartmentID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DepartmentID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Administrator.FullName)
+                </td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.DepartmentID"><i class="fas fa-edit"></i></a>　
+                    <a asp-action="Details" asp-route-id="@item.DepartmentID"><i class="fas fa-info-circle"></i></a>　
+                    <a asp-action="Delete" asp-route-id="@item.DepartmentID"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<nav aria-label="Page Navigation">
+    <ul class="pagination pagination-circle justify-content-center">
+        <li class="page-item @prevDisabled">
+            <a class="page-link"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-CurrentFilter="@ViewData["CurrentFilter"]"
+               asp-route-pageNumber="@(Model.PageIndex-1)">上一页</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i==1?"active":"")">
+                <a class="page-link"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-CurrentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-pageNumber="@i">@i</a>
+            </li>
+        }
+        <li class="page-item @nextDisabled">
+            <a class="page-link"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-CurrentFilter="@ViewData["CurrentFilter"]"
+               asp-route-pageNumber="@(Model.PageIndex+1)">下一页</a>
+        </li>
+    </ul>
+</nav>

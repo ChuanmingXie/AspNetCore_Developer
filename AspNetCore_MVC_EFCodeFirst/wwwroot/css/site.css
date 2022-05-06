@@ -88,6 +88,11 @@ html {
     min-height: 100%;
 }
 
+
+main {
+    min-height: 500px;
+}
+
 body {
     /* Margin bottom by footer height */
     /*margin-bottom: 60px;*/

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCore_MVC_EFCodeFirst.Data;
+using AspNetCore_MVC_EFCodeFirst.Models;
+using AspNetCore_MVC_EFCodeFirst.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AspNetCore_MVC_EFCodeFirst.Data;
-using AspNetCore_MVC_EFCodeFirst.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AspNetCore_MVC_EFCodeFirst.Controllers
 {
@@ -20,10 +19,31 @@ namespace AspNetCore_MVC_EFCodeFirst.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,string searchString,string currentFilter,int?pageNumber)
         {
-            var schoolContext = _context.Departments.Include(d => d.Administrator);
-            return View(await schoolContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParam"] = sortOrder == "date" ? "date_desc" : "date";
+            if (searchString != null)
+                pageNumber = 1;
+            else
+                searchString = currentFilter;
+            ViewData["CurrentFilter"] = searchString;
+
+            //var schoolContext = _context.Departments.Include(d => d.Administrator);
+            var departments = from d in _context.Departments.Include(x => x.Administrator) select d;
+            if (!string.IsNullOrEmpty(searchString))
+                departments = departments.Where(x => x.Name.Contains(searchString) || x.Administrator.FirstMidName.Contains(searchString));
+            departments = sortOrder switch
+            {
+                "name_desc" => departments.OrderByDescending(d => d.Name),
+                "date_desc" => departments.OrderByDescending(d => d.StartDate),
+                "date" => departments.OrderBy(d => d.StartDate),
+                _ => departments.OrderBy(d => d.Name),
+            };
+            int pageSize=3;
+            //return View(await schoolContext.ToListAsync());
+            return View(await PaginatedList<Department>.CreateAsync(departments.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Departments/Details/5

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AspNetCore_MVC_EFCodeFirst.Data;
+using AspNetCore_MVC_EFCodeFirst.Models;
+using AspNetCore_MVC_EFCodeFirst.ViewModel;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using AspNetCore_MVC_EFCodeFirst.Data;
-using AspNetCore_MVC_EFCodeFirst.Models;
 
 namespace AspNetCore_MVC_EFCodeFirst.Controllers
 {
@@ -20,9 +18,42 @@ namespace AspNetCore_MVC_EFCodeFirst.Controllers
         }
 
         // GET: Instructors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
-            return View(await _context.Instructors.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParam"] = sortOrder == "date" ? "date_desc" : "date";
+            if (searchString != null)
+                pageNumber = 1;
+            else
+                searchString = currentFilter;
+            ViewData["CurrentFilter"] = searchString;
+            var instructors = from i in _context.Instructors
+                              .Include(d => d.OfficeAssignment)
+                              .Include(d => d.CoureAssignments)
+                                    .ThenInclude(d => d.Course)
+                                    .ThenInclude(d => d.Enrollments)
+                                    .ThenInclude(d => d.Student)
+                              .Include(d => d.CoureAssignments)
+                                  .ThenInclude(d => d.Course)
+                                  .ThenInclude(d => d.Department)
+                              .AsNoTracking()
+                              .OrderBy(i => i.LastName)
+                              select i;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                instructors = instructors.Where(x => x.LastName.Contains(searchString) || x.FirstMidName.Contains(searchString));
+            }
+            instructors = sortOrder switch
+            {
+                "name_desc" => instructors.OrderByDescending(x => x.LastName),
+                "date_desc" => instructors.OrderByDescending(x => x.HireDate),
+                "date" => instructors.OrderBy(x => x.HireDate),
+                _ => instructors.OrderBy(x => x.LastName),
+            };
+            int pageSize = 3;
+            //return View(await _context.Instructors.AsNoTracking().ToListAsync());
+            return View(await PaginatedList<Instructor>.CreateAsync(instructors.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Instructors/Details/5

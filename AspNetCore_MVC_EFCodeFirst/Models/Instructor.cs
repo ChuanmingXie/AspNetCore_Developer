@@ -23,6 +23,7 @@ namespace AspNetCore_MVC_EFCodeFirst.Models
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         public DateTime HireDate { get; set; }
 
+        [Display(Name="讲师课程")]
         public ICollection<CourseAssignment> CoureAssignments { get; set; }
 
         public OfficeAssignment OfficeAssignment { get; set; }
