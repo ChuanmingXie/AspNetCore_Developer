@@ -8,18 +8,22 @@
 
 <h1>学生</h1>
 
-<p>
-    <a asp-action="Create">新建</a>
-</p>
-<form asp-action="Index" method="get" class="d-flex input-group w-auto">
-    <div class="col-12 col-lg-6">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="关键字" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <button class="btn btn-outline-primary" type="submit" value="Search">查询</button>
-            <a class="mx-3 m-auto"  asp-action="Index">返回列表</a>
+<div class="row" style="padding:0 0 -24px 0">
+    <div class="col-9 col-lg-6">
+        <form asp-action="Index" method="get" class="d-flex input-group w-auto">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="关键字" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <button class="btn btn-outline-primary" type="submit" value="Search"><i title="查询" class="fas fa-search"></i></button>
+                <a class="btn btn-outline-primary" asp-action="Index"><i title="重置" class="fas fa-undo-alt"></i></a>
+            </div>
+        </form>
+    </div>
+    <div class="col-3 col-lg-6">
+        <div class="text-end">
+            <a class="btn btn-outline-primary" asp-action="Create"><i title="新建" class="fas fa-plus"></i></a>
         </div>
     </div>
-</form>
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -42,7 +46,7 @@
                     @Html.DisplayNameFor(model => model[0].EnrollmentDate)
                 </a>
             </th>
-            <th class="text-center">操作</th>
+            <th class="text-end">操作</th>
         </tr>
     </thead>
     <tbody>
@@ -58,7 +62,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EnrollmentDate)
                 </td>
-                <td class="text-center">
+                <td class="text-end">
                     <a asp-action="Edit" asp-route-id="@item.ID"><i class="fas fa-edit"></i></a>　
                     <a asp-action="Details" asp-route-id="@item.ID"><i class="fas fa-info-circle"></i></a>　
                     <a asp-action="Delete" asp-route-id="@item.ID"><i class="fas fa-trash-alt"></i></a>

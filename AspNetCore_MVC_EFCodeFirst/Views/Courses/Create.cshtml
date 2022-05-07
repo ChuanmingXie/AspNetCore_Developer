@@ -9,30 +9,69 @@
 <h4>Course</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CourseID" class="control-label"></label>
-                <input asp-for="CourseID" class="form-control" />
-                <span asp-validation-for="CourseID" class="text-danger"></span>
+            <div class="row ms-1">
+                <div class="form-outline mb-4 col-md-6">
+                    <input asp-for="CourseID" type="text" id="courseID" class="form-control" />
+                    <label asp-for="CourseID" class="form-label" for="courseID"></label>
+                </div>
+                <div class="col-md-6">
+                    <span asp-validation-for="CourseID" class="form-text text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+
+            <div class="row ms-1">
+                <div class="form-outline mb-4 col-md-6">
+                    <input asp-for="Title" type="text" id="courseTitle" class="form-control" />
+                    <label asp-for="Title" class="form-label" for="courseTitle"></label>
+                </div>
+                <div class="col-md-6">
+                    <span asp-validation-for="Title" class="form-text text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Credits" class="control-label"></label>
-                <input asp-for="Credits" class="form-control" />
-                <span asp-validation-for="Credits" class="text-danger"></span>
+
+            <div class="row ms-1">
+                <div class="form-outline mb-4 col-md-6">
+                    <input asp-for="Credits" type="text" id="courseCredits" class="form-control" />
+                    <label asp-for="Credits" class="form-label" for="courseCredits"></label>
+                </div>
+                <div class="col-md-6">
+                    <span asp-validation-for="Credits" class="form-text text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DepartmentID" class="control-label"></label>
-                <select asp-for="DepartmentID" class ="form-control" asp-items="ViewBag.DepartmentID"></select>
+
+            <div class="row ms-1">
+                <div class="form-outline mb-4 col-md-6">
+                    <input id="departmentID" class="form-control select-input" list="departmentIDList" name="DepartmentID">
+                    <datalist id="departmentIDList">
+                        @foreach (var item in ViewBag.DepartmentID)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </datalist>
+                    <label asp-for="DepartmentID" for="departmentID" class="form-label"></label>
+                </div>
+                <div class="col-md-6">
+                    <span asp-validation-for="DepartmentID" class="form-text text-danger"></span>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    @*<label asp-for="DepartmentID" class="control-label"></label>*@
+                    <select asp-for="DepartmentID" class="form-select" asp-items="ViewBag.DepartmentID">
+                        <option>@Html.DisplayNameFor(mode=>Model.DepartmentID)</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <span asp-validation-for="DepartmentID" class="form-text text-danger"></span>
+                </div>
+            </div>
+            <!-- Submit button -->
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="创建" class="btn btn-primary" />
             </div>
         </form>
     </div>

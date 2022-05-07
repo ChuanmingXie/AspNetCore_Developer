@@ -24,7 +24,7 @@ namespace AspNetCore_MVC_EFCodeFirst.Models
         public DateTime HireDate { get; set; }
 
         [Display(Name="讲师课程")]
-        public ICollection<CourseAssignment> CoureAssignments { get; set; }
+        public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
         public OfficeAssignment OfficeAssignment { get; set; }
     }

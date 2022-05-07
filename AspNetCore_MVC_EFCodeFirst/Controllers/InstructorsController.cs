@@ -30,15 +30,11 @@ namespace AspNetCore_MVC_EFCodeFirst.Controllers
             ViewData["CurrentFilter"] = searchString;
             var instructors = from i in _context.Instructors
                               .Include(d => d.OfficeAssignment)
-                              .Include(d => d.CoureAssignments)
-                                    .ThenInclude(d => d.Course)
-                                    .ThenInclude(d => d.Enrollments)
-                                    .ThenInclude(d => d.Student)
-                              .Include(d => d.CoureAssignments)
+                              .Include(d => d.CourseAssignments)
                                   .ThenInclude(d => d.Course)
                                   .ThenInclude(d => d.Department)
                               .AsNoTracking()
-                              .OrderBy(i => i.LastName)
+                              .OrderBy(d => d.LastName)
                               select i;
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -57,7 +53,7 @@ namespace AspNetCore_MVC_EFCodeFirst.Controllers
         }
 
         // GET: Instructors/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> DetailsOrigin(int? id)
         {
             if (id == null)
             {
@@ -72,6 +68,36 @@ namespace AspNetCore_MVC_EFCodeFirst.Controllers
             }
 
             return View(instructor);
+        }
+
+        public async Task<IActionResult> Details(int? id, int? courseID)
+        {
+            var detailVM = new InstructorDetailData();
+            var instructors  = await _context.Instructors
+                  .Include(i => i.OfficeAssignment)
+                  .Include(i => i.CourseAssignments)
+                    .ThenInclude(i => i.Course)
+                    .ThenInclude(i => i.Department)
+                  .OrderBy(i => i.LastName)
+                  .ToListAsync();
+            if (id != null)
+            {
+                ViewData["InstrcutorID"] = id.Value;
+                detailVM.Instructor = instructors.Where(i => i.ID == id.Value).Single();
+                detailVM.Courses = detailVM.Instructor.CourseAssignments.Select(s => s.Course);
+            }
+            if (courseID != null)
+            {
+                ViewData["CourseID"] = courseID.Value;
+                var selectCourse = detailVM.Courses.Where(x => x.CourseID == courseID).Single();
+                await _context.Entry(selectCourse).Collection(x => x.Enrollments).LoadAsync();
+                foreach (var enrollment in selectCourse.Enrollments)
+                {
+                    await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
+                }
+                detailVM.Enrollments = selectCourse.Enrollments;
+            }
+            return View(detailVM);
         }
 
         // GET: Instructors/Create
